@@ -13,13 +13,21 @@ public class Author extends AbstractNameWithId {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "Author_Book",
             joinColumns = {@JoinColumn(name = "author_id")},
             inverseJoinColumns = {@JoinColumn(name = "book_id")}
     )
     private List<Book> books = new ArrayList<>();
+
+    public Author() {
+    }
+
+    public Author(String name, String lastName) {
+        super(name);
+        this.lastName = lastName;
+    }
 
     public String getLastName() {
         return lastName;

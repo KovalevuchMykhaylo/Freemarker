@@ -19,6 +19,13 @@ public abstract class AbstractNameWithId extends AbstractId{
         this.name = name;
     }
 
+    public AbstractNameWithId(String name) {
+        this.name = name;
+    }
+
+    public AbstractNameWithId() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

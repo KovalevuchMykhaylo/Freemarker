@@ -7,4 +7,10 @@
 </head>
 <body>
 <h1>Hello</h1>
+<p>${test}</p>
+<#list authors as authr>
+            <div>
+                <p>${authr.name}</p>
+            </div>
+</#list>
 </body>
