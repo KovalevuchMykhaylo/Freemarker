@@ -1,27 +1,44 @@
 package com.library.controller;
 
-import com.library.entity.Author;
+import com.library.service.AuthorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 @Controller
 public class IndexController {
 
-    private static List<Author> authors = new ArrayList<>();
+    private AuthorService authors;
 
-    static {
-        authors.add(new Author("test", "test"));
-        authors.add(new Author("test 1", "test 1"));
+    @Autowired
+    public IndexController(AuthorService authors) {
+        this.authors = authors;
     }
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("test", "test");
-        model.addAttribute("authors", authors);
+        model.addAttribute("authors", authors.findAll());
         return "index";
+    }
+
+    @GetMapping("/test")
+    public String testMapping(){
+        return "redirect:/";
+    }
+
+    @PostMapping("/testForm")
+    public String testPost(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("testParam") String [] bookArray){
+        System.out.println(firstName);
+        System.out.println(lastName);
+        for(int i = 0; i < bookArray.length; i++){
+            System.out.println(bookArray[i]);
+        }
+        return "redirect:/";
     }
 }
