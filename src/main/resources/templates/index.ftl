@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Home page</title>
     <meta charset="UTF-8">
+
 </head>
+
 <body>
+
 <h1>Hello</h1>
+
 <#list authors as authr>
             <div>
                 <p>${authr.name}</p>

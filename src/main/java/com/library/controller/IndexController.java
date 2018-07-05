@@ -1,5 +1,7 @@
 package com.library.controller;
 
+import com.library.entity.Author;
+import com.library.entity.Book;
 import com.library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -9,21 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class IndexController {
 
-    private AuthorService authors;
+    private AuthorService authorService;
 
     @Autowired
-    public IndexController(AuthorService authors) {
-        this.authors = authors;
+    public IndexController(AuthorService authorService) {
+        this.authorService = authorService;
     }
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("authors", authors.findAll());
+        model.addAttribute("authors", authorService.findAll());
         return "index";
     }
 
@@ -39,6 +43,15 @@ public class IndexController {
         for(int i = 0; i < bookArray.length; i++){
             System.out.println(bookArray[i]);
         }
+
+        List<Book> books = new ArrayList<>();
+        for(int i = 0; i < bookArray.length; i++){
+            books.add(new Book(bookArray[i]));
+        }
+        Author author = new Author(firstName, lastName);
+        author.setBooks(books);
+        authorService.save(author);
+
         return "redirect:/";
     }
 }
