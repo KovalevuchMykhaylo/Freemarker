@@ -30,10 +30,25 @@
 </body>
 
 <script>
+    var inputId = 1;
+
     function notMyFunction() {
+        var div = document.createElement("div");
+        div.setAttribute("id", inputId);
+        document.getElementById("parentId").appendChild(div);
         var node = document.createElement("INPUT");
         node.setAttribute("type", "text");
         node.setAttribute("name", "bookArray");
-        document.getElementById("parentId").appendChild(node);
+        node.setAttribute("placeholder", "Book name");
+        document.getElementById(inputId).appendChild(node);
+        var btn = document.createElement("span");
+        btn.innerHTML = "<a onclick=\"removeElementById(" + inputId + ")\">Remove</a>";
+        document.getElementById(inputId).appendChild(btn);
+        inputId = inputId + 1
+    }
+
+    function removeElementById(elementId) {
+        var elem = document.getElementById(elementId);
+        elem.parentNode.removeChild(elem);
     }
 </script>

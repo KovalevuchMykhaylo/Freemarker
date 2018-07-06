@@ -44,13 +44,13 @@ public class IndexController {
             System.out.println(bookArray[i]);
         }
 
-        List<Book> books = new ArrayList<>();
-        for(int i = 0; i < bookArray.length; i++){
-            books.add(new Book(bookArray[i]));
-        }
-        Author author = new Author(firstName, lastName);
-        author.setBooks(books);
-        authorService.save(author);
+//        List<Book> books = new ArrayList<>();
+//        for(int i = 0; i < bookArray.length; i++){
+//            books.add(new Book(bookArray[i]));
+//        }
+//        Author author = new Author(firstName, lastName);
+//        author.setBooks(books);
+//        authorService.save(author);
 
         return "redirect:/";
     }
