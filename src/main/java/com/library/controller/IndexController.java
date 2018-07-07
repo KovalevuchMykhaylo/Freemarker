@@ -31,6 +31,11 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/page")
+    public String page() {
+        return "page";
+    }
+
     @GetMapping("/test")
     public String testMapping(){
         return "redirect:/";

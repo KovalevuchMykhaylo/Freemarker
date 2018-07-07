@@ -12,6 +12,8 @@
 
 <h1>Hello</h1>
 
+<a href="/page">Page</a>
+
 <#list authors as authr>
             <div>
                 <p>${authr.name}</p>
