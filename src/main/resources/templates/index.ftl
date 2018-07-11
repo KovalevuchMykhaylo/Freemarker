@@ -1,6 +1,6 @@
 <#include "layout/standardPage.ftl" />
 <@standardPage title="Home">
-    <h1>Hello</h1>
+<h1>Hello</h1>
     <button onclick="reloadPage()">Reload page</button>
 
     <a href="/page">Page</a>
@@ -8,16 +8,22 @@
     <button onclick="showHideForm()">Show/Hide Form</button>
     <div id="listAuthors" style="display: block">
         <p>Authors names</p>
-        <#list authors as authr>
+        <#list authors as author>
             <div>
-                <p>${authr.name} ${authr.lastName}</p>
+                <p>${author.name} ${author.lastName} <a href="/books/${author.id}" class="button">Books</a></p>
             </div>
         </#list>
     </div>
         <br>
         <form action="/testForm" method="post" id="parentId" style="display: none">
-            <input type="text" name="firstName">
-            <input type="text" name="lastName">
+            <div>
+                <label path="firstName">First Name</label>
+                <input type="text" name="firstName">
+            </div>
+            <div>
+                <label path="lastName">Last Name</label>
+                <input type="text" name="lastName">
+            </div>
             <a onclick="notMyFunction()">Add Book</a>
             <button type="submit">Add</button>
         </form>

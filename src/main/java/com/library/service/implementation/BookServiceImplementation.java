@@ -27,4 +27,9 @@ public class BookServiceImplementation implements BookService {
     public void save(Book book) {
         bookRepository.save(book);
     }
+
+    @Override
+    public List<Book> findByAuthorId(Long id) {
+        return bookRepository.findAllByAuthorId(id);
+    }
 }

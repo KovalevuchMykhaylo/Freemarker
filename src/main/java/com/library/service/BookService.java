@@ -9,4 +9,6 @@ public interface BookService {
     List<Book> findAll();
 
     void save (Book book);
+
+    List<Book> findByAuthorId(Long id);
 }
