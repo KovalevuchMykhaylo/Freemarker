@@ -43,19 +43,21 @@ public class IndexController {
 
     @PostMapping("/testForm")
     public String testPost(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("testParam") String [] bookArray){
-        System.out.println(firstName);
-        System.out.println(lastName);
-        for(int i = 0; i < bookArray.length; i++){
-            System.out.println(bookArray[i]);
-        }
-
-//        List<Book> books = new ArrayList<>();
+//        System.out.println(firstName);
+//        System.out.println(lastName);
 //        for(int i = 0; i < bookArray.length; i++){
-//            books.add(new Book(bookArray[i]));
+//            System.out.println(bookArray[i]);
 //        }
-//        Author author = new Author(firstName, lastName);
-//        author.setBooks(books);
-//        authorService.save(author);
+
+        Author author = new Author(firstName, lastName);
+        if(bookArray != null) {
+            List<Book> books = new ArrayList<>();
+            for (String aBookArray : bookArray) {
+                books.add(new Book(aBookArray));
+            }
+            author.setBooks(books);
+        }
+        authorService.save(author);
 
         return "redirect:/";
     }
