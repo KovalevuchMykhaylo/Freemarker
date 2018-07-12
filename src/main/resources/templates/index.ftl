@@ -18,7 +18,7 @@
                 </div>
             </div>
                 <#if authorBooks??>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="listOfBooks" style="display: block">
                         <div style="height: 400px; overflow-y: scroll; background: white;">
                          ${authorBooks}
                         </div>

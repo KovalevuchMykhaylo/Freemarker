@@ -40,6 +40,15 @@ function showHideForm() {
     } else {
         y.style.display = "block";
     }
+
+    var z = document.getElementById("listOfBooks");
+    if(z != null) {
+        if (z.style.display === "block") {
+            z.style.display = "none";
+        } else {
+            z.style.display = "block";
+        }
+    }
 }
 
 function reloadPage() {
