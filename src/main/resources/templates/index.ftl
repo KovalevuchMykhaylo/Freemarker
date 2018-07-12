@@ -27,12 +27,12 @@
             <div class="col-md-12">
                 <form action="/testForm" method="post" id="parentId" style="display: none">
                     <div>
-                        <label path="firstName">First Name</label>
-                        <input type="text" name="firstName">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" required/>
                     </div>
                     <div>
-                        <label path="lastName">Last Name</label>
-                        <input type="text" name="lastName">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" required/>
                     </div>
                     <a onclick="notMyFunction()" class="customBtn">Add Book</a>
                     <button type="submit" class="btn btn-success">Add</button>

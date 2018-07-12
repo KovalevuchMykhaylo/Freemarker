@@ -49,12 +49,25 @@ public class IndexController {
         if (books != null) {
             for (Book b : books) {
                 content.append("<p class=\"listOfBooks\">");
-                content.append(b.getName());
+                content.append("<a href=\"/books/")
+                        .append(id)
+                        .append("/")
+                        .append(b.getId())
+                        .append("\">")
+                        .append(b.getName())
+                        .append("</a>");
                 content.append("</p>");
             }
             model.addAttribute("authorBooks", content.toString());
         }
         return "index";
+    }
+
+    @RequestMapping("/books/{authorId}/{bookId}")
+    public String deleteBook(@PathVariable("bookId")Long bookId, @PathVariable("authorId")Long authorId, Model model){
+        bookService.deleteBook(bookId);
+//        return showAllAuthorBooks(authorId, model);
+        return "redirect:/";
     }
 
     @PostMapping("/testForm")

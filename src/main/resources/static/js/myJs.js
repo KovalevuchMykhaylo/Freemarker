@@ -10,6 +10,7 @@ function notMyFunction() {
     node.setAttribute("type", "text");
     node.setAttribute("name", "bookArray");
     node.setAttribute("placeholder", "Book name");
+    node.setAttribute("required", "required");
     document.getElementById(inputId).appendChild(node);
 
     var btn = document.createElement("span");

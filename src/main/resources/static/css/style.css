@@ -58,3 +58,16 @@
     color: #ffb300;
     font-weight: bold;
 }
+
+input:required {
+    box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+}
+
+input:required:focus {
+    border: 1px solid red;
+    outline: none;
+}
+
+input:required:hover {
+    opacity: 1;
+}

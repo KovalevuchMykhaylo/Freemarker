@@ -32,4 +32,10 @@ public class BookServiceImplementation implements BookService {
     public List<Book> findByAuthorId(Long id) {
         return bookRepository.findAllByAuthorId(id);
     }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteBookRelarion(id);
+        bookRepository.deleteBookById(id);
+    }
 }
