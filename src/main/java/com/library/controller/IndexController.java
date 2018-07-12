@@ -32,6 +32,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("authors", authorService.findAll());
+        model.addAttribute("authorBooks", null);
         return "index";
     }
 
@@ -41,9 +42,19 @@ public class IndexController {
     }
 
     @GetMapping("/books/{authorId}")
-    public String showAllAuthorBooks(@PathVariable("authorId") Long id){
-        bookService.findByAuthorId(id).forEach(System.out::println);
-        return "redirect:/";
+    public String showAllAuthorBooks(@PathVariable("authorId") Long id, Model model){
+        model.addAttribute("authors", authorService.findAll());
+        StringBuilder content = new StringBuilder();
+        List<Book> books = bookService.findByAuthorId(id);
+        if (books != null) {
+            for (Book b : books) {
+                content.append("<p class=\"listOfBooks\">");
+                content.append(b.getName());
+                content.append("</p>");
+            }
+            model.addAttribute("authorBooks", content.toString());
+        }
+        return "index";
     }
 
     @PostMapping("/testForm")

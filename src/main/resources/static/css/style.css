@@ -7,3 +7,54 @@
     color: white;
     text-align: center;
 }
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-header {
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px;
+}
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.bodyContent {
+    padding: 10px;
+}
+
+.customBtn {
+    display: inline-block;
+    color: #444;
+    border: 1px solid #CCC;
+    background: #DDD;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    vertical-align: middle;
+    max-width: 100px;
+    padding: 5px;
+    text-align: center;
+}
+
+.customBtn:active {
+    color: red;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.listOfBooks:hover {
+    color: #ffb300;
+    font-weight: bold;
+}
