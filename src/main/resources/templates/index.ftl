@@ -10,17 +10,32 @@
                 <div id="listAuthors" style="display: block">
                     <p>Authors names</p>
                     <#list authors as author>
-                        <div>
-                            <p>${author.name} ${author.lastName} <a href="/books/${author.id}" class="button">Books</a>
-                            </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dropdown">
+                                <button class="dropbtn">${author.name} ${author.lastName}</button>
+                                <div class="dropdown-content">
+                                    <a href="/books/${author.id}">Books</a>
+                                    <a href="/deleteAuthor/${author.id}">Delete</a>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <#--<div>-->
+                    <#--<p>${author.name} ${author.lastName} <a href="/books/${author.id}">Books</a></p>-->
+                    <#--</div>-->
                     </#list>
                 </div>
             </div>
                 <#if authorBooks??>
                     <div class="col-md-6" id="listOfBooks" style="display: block">
                         <div style="height: 400px; overflow-y: scroll; background: white;">
-                         ${authorBooks}
+                    <#list authorBooks as book>
+                        <p class="listOfBooks">
+                            <#--<a href="/books/${authorId}/${book.id}">${book.name}</a>-->
+                            <a onclick="deleteWarning('/books/${authorId}/${book.id}', '/books/${authorId}')">${book.name}</a>
+                        </p>
+                    </#list>
                         </div>
                     </div>
                 </#if>

@@ -37,4 +37,10 @@ public class AuthorServiceImplementation implements AuthorService {
     public List<Author> findAll() {
         return authorRepository.findAll();
     }
+
+    @Override
+    public void deleteAuthor(Long delete) {
+        authorRepository.deleteAuthorRelation(delete);
+        authorRepository.deleteAuthorById(delete);
+    }
 }

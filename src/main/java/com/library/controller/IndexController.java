@@ -42,38 +42,32 @@ public class IndexController {
     }
 
     @GetMapping("/books/{authorId}")
-    public String showAllAuthorBooks(@PathVariable("authorId") Long id, Model model){
+    public String showAllAuthorBooks(@PathVariable("authorId") Long id, Model model) {
         model.addAttribute("authors", authorService.findAll());
-        StringBuilder content = new StringBuilder();
         List<Book> books = bookService.findByAuthorId(id);
-        if (books != null) {
-            for (Book b : books) {
-                content.append("<p class=\"listOfBooks\">");
-                content.append("<a href=\"/books/")
-                        .append(id)
-                        .append("/")
-                        .append(b.getId())
-                        .append("\">")
-                        .append(b.getName())
-                        .append("</a>");
-                content.append("</p>");
-            }
-            model.addAttribute("authorBooks", content.toString());
-        }
+        model.addAttribute("authorBooks", books);
+        model.addAttribute("authorId", id);
         return "index";
     }
 
     @RequestMapping("/books/{authorId}/{bookId}")
-    public String deleteBook(@PathVariable("bookId")Long bookId, @PathVariable("authorId")Long authorId, Model model){
+    public String deleteBook(@PathVariable("bookId") Long bookId, @PathVariable("authorId") Long authorId, Model model) {
         bookService.deleteBook(bookId);
-//        return showAllAuthorBooks(authorId, model);
+//        System.out.println("Delete");
+        return showAllAuthorBooks(authorId, model);
+//        return "redirect:/";
+    }
+
+    @GetMapping("/deleteAuthor/{authorId}")
+    public String deleteAuthor(@PathVariable("authorId") Long authorId) {
+        authorService.deleteAuthor(authorId);
         return "redirect:/";
     }
 
     @PostMapping("/testForm")
-    public String testPost(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("testParam") String [] bookArray){
+    public String testPost(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("testParam") String[] bookArray) {
         Author author = new Author(firstName, lastName);
-        if(bookArray != null) {
+        if (bookArray != null) {
             List<Book> books = new ArrayList<>();
             for (String aBookArray : bookArray) {
                 books.add(new Book(aBookArray));

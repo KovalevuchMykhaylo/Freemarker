@@ -55,3 +55,17 @@ function showHideForm() {
 function reloadPage() {
     location.reload();
 }
+
+function deleteWarning(url, redirectUrl) {
+    var remove = confirm("Delete?");
+    if (remove) {
+        var http = new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send(null);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                window.location.href = redirectUrl;
+            }
+        }
+    }
+}
